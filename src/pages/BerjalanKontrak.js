@@ -13,6 +13,8 @@ class BerjalanKontrak extends React.Component{
 			
 		}
 		this.pekerjaanSelesaiHandler=this.pekerjaanSelesaiHandler.bind(this);
+    this.cancelHandler=this.cancelHandler.bind(this);
+    this.cancelHandlerJuga=this.cancelHandlerJuga.bind(this);
 	}
 
 
@@ -70,6 +72,27 @@ class BerjalanKontrak extends React.Component{
 		e.preventDefault();
 		this.props.prevStep();
 	}
+
+  async cancelHandlerJuga(){
+    try{
+          let result = await swal({
+              title: 'Anda yakin ingin batalkan kontrak?',
+              text: "Biaya deposit akan refund",
+              icon: 'warning',
+              buttons: true,
+              dangerMode: true
+          }).then((result)=>{
+            if(result){
+              this.cancelHandler();
+            } else {
+              console.log("DiCancel")
+            }
+          })
+      }catch(e){
+          // Fail!
+          console.error(e);
+      }
+  }
 
 	cancelHandler=()=>{
 		const contract = require('truffle-contract');
@@ -143,7 +166,7 @@ class BerjalanKontrak extends React.Component{
       			<br />
 
       			<div className="text-right">
-              <button className="btn btn-danger" onClick={this.cancelHandler}>Batalkan Kontrak</button>
+              <button className="btn btn-danger" onClick={this.cancelHandlerJuga}>Batalkan Kontrak</button>
               {'    '}
       				<button className="btn btn-primary" onClick={this.pekerjaanSelesaiHandler}>Selesai</button>
       			</div>

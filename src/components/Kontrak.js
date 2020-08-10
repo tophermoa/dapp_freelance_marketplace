@@ -56,6 +56,27 @@ class Kontrak extends React.Component{
 		return(<TarikDana />)
 	}
 
+	async handleBackToHome(){
+		try{
+      		let result = await swal({
+      		    title: 'Yakin ingin keluar?',
+      		    text: "Kontrak akan otomatis dibatalkan",
+      		    icon: 'warning',
+      		    buttons: true,
+          		dangerMode: true
+      		}).then((result)=>{
+      			if(result){
+     		 		return this.props.history.push("/cariproject");
+      			} else {
+      				console.log("DiCancel")
+      			}
+      		})
+   		}catch(e){
+   		    // Fail!
+   		    console.error(e);
+   		}
+	}
+
 
 	getSteps(){
   		return ['Waktu Kontrak Berakhir', 'Deposit', 'Konfirmasi', "Kontrak Berjalan", "Pengiriman", "Penarikan"];
@@ -112,10 +133,10 @@ class Kontrak extends React.Component{
 		}
 	}
 
-	handleBackToHome=(e)=>{
-		e.preventDefault()
-		this.props.history.push("/cariproject")
-	}
+	// handleBackToHome=(e)=>{
+	// 	e.preventDefault()
+	// 	this.props.history.push("/cariproject")
+	// }
 
 
 	render(){
