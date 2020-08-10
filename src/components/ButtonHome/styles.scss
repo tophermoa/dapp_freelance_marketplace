@@ -1,0 +1,64 @@
+.button-luar{
+	background-image: url("assets/image/home.jpg");
+	width: 100%;
+	height: 600px;
+	background-size: cover;
+	text-align: center;
+}
+
+.button-table{
+	justify-content: center;
+	align-items: center;
+	padding-top: 15%;
+}
+
+.flex{
+	justify-content: space-between;
+	align-items: center;
+	display: flex;
+	margin-top: 50px;
+	max-width: 300px;
+	margin: 0 auto;
+}
+
+.buttonya{
+	color: #494949 !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	background: transparent;
+	padding: 4px;
+	border: 2px solid #494949 !important;
+	display: inline-block;
+	transition: all 0.4s ease 0s;
+}
+
+.buttonya:hover{
+	color: #ffffff !important;
+	background: #f6b93b;
+	border-color: #f6b93b !important;
+	transition: all 0.4s ease 0s;
+}
+
+/*
+ul#horizontal-list {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+	}
+
+ul#horizontal-list li {
+	display: inline;
+}
+
+
+.horizontal{
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+}
+
+
+.horizontal li{
+	display: inline;
+}
+*/

@@ -7,5 +7,8 @@ export default keyMirror({
   CLOSE_CONFIRM_MODAL: null,
   OPEN_LEFT_NAV: null,
   CLOSE_LEFT_NAV: null,
-  SET_PROVIDER: null
+  SET_PROVIDER: null,
+  GET_DATA: null,
+  INCREMENT: null,
+  DOWNLOAD: null
 })

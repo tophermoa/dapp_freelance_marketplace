@@ -1,0 +1,40 @@
+
+.bg-image{
+	width: 100%;
+	max-height: 100vh;
+}
+
+
+.parallax {
+	background-image: url("assets/image/home.jpg");
+	width: 100%;
+	height: 600px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repet: no-repeat;
+	background-size: cover;
+}
+
+/*
+.content1{
+	display: block;
+	width: 100%;
+	height: 700px;
+	position: absolute;
+	background-color: green;
+}
+
+.content2{
+	display: block;
+	width: 100%;
+	height: 700px;
+	position: absolute;
+	background-color: yellow;
+}
+
+
+.content h1{
+	font-size: 56px;
+	margin-top: 80px;
+}
+*/

@@ -4,6 +4,12 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin    from 'html-webpack-plugin'
 import CopyWebpackPlugin    from 'copy-webpack-plugin'
 
+// const webpack = require('webpack');
+// const path = require('path');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
   mode: 'production',
   stats: 'errors-only',

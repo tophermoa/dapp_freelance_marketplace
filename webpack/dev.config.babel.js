@@ -2,6 +2,10 @@ import webpack            from 'webpack'
 import path               from 'path'
 import HtmlWebpackPlugin  from 'html-webpack-plugin'
 
+// const webpack = require('webpack');
+// const path = require('path');
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
@@ -11,13 +15,22 @@ module.exports = {
     host: process.env.HOST, // Defaults to `localhost`
     port: '3000', // Defaults to 8080
     open: true, // Open the page in browser
-    historyApiFallback: true
+    historyApiFallback: true,
+    // proxy: {
+    //   '/api/**': 'http://localhost:8080'
+    // }
+    proxy: {
+      '/': {
+        target: 'http://localhost:8080',
+        secure: false
+      }
+    }
   },
 
   module: {
     noParse: [new RegExp('node_modules/localforage/dist/localforage.js')],
     rules: [{
-      test: /\.scss$/,
+      test: /\.s?css$/,
       use: [
         { loader: 'style-loader' },
         {
@@ -48,7 +61,7 @@ module.exports = {
       },
       __DEVELOPMENT__: true
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin({ multiStep: true }),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html'
