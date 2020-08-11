@@ -12,6 +12,12 @@ import BuatProjectjson from 'abi/BuatProject.json';
 import jwt_decode from 'jwt-decode';
 import {myProject} from 'functions/ProjectFunction';
 import { withRouter } from 'react-router';
+import {connect} from 'react-redux';
+import {bindActionCreators, compose} from 'redux';
+import {ambilData} from 'core/actions/actions-dataproject';
+import {NavLink} from 'react-router-dom';
+
+const isSearched = searchTerm => item => item.judul.toLowerCase().includes(searchTerm.toLowerCase());
 
 class KontrakProject extends React.Component{
 	constructor(props){
@@ -19,9 +25,11 @@ class KontrakProject extends React.Component{
 		this.state={
       		dataCount: 0,
       		myproject: [],
-          firstName: ''
+          firstName: '',
+          input: ''
 		}
     this.logOut=this.logOut.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 	}
 
 	async componentWillMount(){
@@ -100,6 +108,21 @@ class KontrakProject extends React.Component{
       this.props.history.push('/');
     }
 
+    handleClick = (data) => {
+      // access to e.target here
+      this.props.diSelect(data);
+    }
+
+    handleButton(){
+      console.log("Searching...")
+    }
+
+    handleInputSearch=(event)=>{
+      this.setState({
+        input: event.target.value
+      })
+    }
+
 
 	render(){
 		return(
@@ -140,11 +163,12 @@ class KontrakProject extends React.Component{
 				<h1 className="h3 mb-0 text-gray-800">Kontrak & Project</h1>
         
         	{this.state.myproject
+          .filter(isSearched(this.state.input))
         	.map((data, key) => {
             return(
-            
+            <NavLink to={`tawaran/${data.id}`} style={{ textDecoration: 'none' }} >
             <Card>
-            <CardActionArea key={key}>
+            <CardActionArea key={key} onClick={() => this.handleClick(data)} >
               <div className="card shadow mb-4">
               <div className="card border-left-warning shadow h-100 py-2">
               
@@ -174,6 +198,7 @@ class KontrakProject extends React.Component{
               </div>
             </CardActionArea>
             </Card>
+            </NavLink>
             )
             })}
 
@@ -184,4 +209,16 @@ class KontrakProject extends React.Component{
 
 }
 
-export default withRouter(KontrakProject);
+const mapStateToProps=(state)=>{
+  return{
+    ngegetData: state.ngegetData
+  }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    diSelect: (data) => {dispatch(ambilData(data))}
+  }
+}
+
+export default compose(withRouter, connect(mapStateToProps, mapDispatchToProps))(KontrakProject);
